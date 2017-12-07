@@ -1,0 +1,51 @@
+{% include "base.html" %}
+{% block head %}
+    <style>
+        body {
+            background: url('/static/images/foreign-exchange.jpg') no-repeat;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="w3-container">
+    <center>
+        <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for currencies..." id="myInput"
+               onkeyup="myFunction()" style="width:20%;">
+        <br>
+
+        <table class="w3-table-all w3-hoverable" style="width:20%" id="currency_table">
+            <tr class="w3-green">
+                <th><center>Currency</center></th>
+            </tr>
+            {% for currency in supported_currencies %}
+                <tr>
+                    <td><center>{{currency}}</center></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <div class="well" style="width:20%">
+            <a href="/">
+                <img src="/static/images/fistpump.gif"><br>
+                <strong>Click on the image to go home!</strong>
+            </a>
+        </div>
+    </center>
+</div>
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("currency_table");
+    li = ul.getElementsByTagName("td");
+    for (i = 0; i < li.length; i++) {
+        if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+{% endblock %}

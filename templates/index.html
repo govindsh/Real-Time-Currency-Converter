@@ -1,0 +1,86 @@
+{% include "base.html" %}
+{% block head %}
+    <style>
+        body {
+            background: url('/static/images/foreign-exchange.jpg') no-repeat;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<center>
+<div class="w3-container well" style="width:40%">
+
+    <center>
+        <form action="/convert_currency" method="post">
+            <input class="w3-radio" type="radio" name="personType" value="pro" onclick="$('#show_novice').slideUp();$('#show_pro').slideDown();">
+            <label>I'm a Pro</label>
+
+            <input class="w3-radio" type="radio" name="personType" value="novice" onclick="$('#show_pro').slideUp();$('#show_novice').slideDown();">
+            <label>I'm a Novice</label>
+
+            <div class="w3-tooltip w3-blue">
+                <p class="w3-text">
+                    Pro: For a user as awesome as you, only currency codes will be shown.<br>
+                    Novice: Currency codes + country name will be shown till you become familiar.
+                </p>
+                <p>What are these options?</p>
+            </div> <!--end of tooltip-->
+
+            <div id="show_pro" style="display:none;width:34%">
+                <label>I have: </label>
+                <select class="w3-select w3-border" name="pro_currency_i_have" size="1">
+                    <option value="" disabled selected>Choose your option from 32 currencies</option>
+                    {% for currency in currency_list %}
+                        <option value="{{currency}}">{{currency}}</option>
+                    {% endfor %}
+
+                </select>
+
+                <br><br>
+
+                <label>I want: </label>
+                <select class="w3-select w3-border" name="pro_currency_i_want" size="1">
+                    <option value="" disabled selected>Choose your option from 32 currencies</option>
+                    {% for currency in currency_list %}
+                        <option value="{{currency}}">{{currency}}</option>
+                    {% endfor %}
+                </select>
+            </div> <!--End of pro div-->
+
+            <div id="loading" style="display:none;">
+                <center>
+                    <img src="/static/images/loading.gif" height="400" width="400"><br>
+                    <strong>Loading Rates, please wait...</strong>
+                </center>
+            </div>
+
+            <div id="show_novice" style="display:none;width:34%">
+                <label>I have: </label>
+                <select class="w3-select w3-border" name="novice_currency_i_have" size="1">
+                    <option value="" disabled selected>Choose your option from 32 currencies</option>
+                    {% for description in currency_list_and_description %}
+                        <option value="{{description}}">{{description}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label>I want: </label>
+                <select class="w3-select w3-border" name="novice_currency_i_want" size="1">
+                    <option value="" disabled selected>Choose your option from 32 currencies</option>
+                    {% for description in currency_list_and_description %}
+                        <option value="{{description}}">{{description}}</option>
+                    {% endfor %}
+                </select>
+            </div><!-- End of novice div -->
+            <br>
+            <marquee><font color="red">Rates are updated everyday at 4PM Central European Time (CET).</font></marquee>
+            <input type="submit" value="Convert" class="w3-button w3-green" onclick="$('#loading').show();">
+        </form>
+    </center>
+</div>
+    <footer>
+        <div class="well" style="width:20%">
+            <strong>Copyright @ 2017 - Srikkanth Govindaraajan</strong>
+        </div>
+    </footer>
+</center>
+{% endblock %}

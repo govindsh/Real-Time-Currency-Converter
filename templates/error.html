@@ -1,0 +1,23 @@
+{% include "base.html" %}
+{% block head %}
+<style>
+    body {
+        background: url('/static/images/foreign-exchange.jpg') no-repeat;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="w3-container well">
+    <center>
+    {% for message in messages %}
+    <font class="w3-red">{{message}}</font>
+    {% endfor %}
+    <br><br>
+    <a href="/">
+        <img src="/static/images/go_back.gif"><br><br>
+        <label>Click on the image to go back</label>
+    </a>
+    </center>
+</div>
+{% endblock %}

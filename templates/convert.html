@@ -1,0 +1,44 @@
+{% include "base.html" %}
+{% block head %}
+    <style>
+        body {
+            background: url('/static/images/foreign-exchange.jpg') no-repeat;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="w3-container">
+    <center>
+        <table class="w3-table-all w3-hoverable" style="width:50%">
+            <tr class="w3-green">
+                <th>Date</th>
+                <th>I have</th>
+                <th>I want</th>
+                <th>Value</th>
+            </tr>
+            <tr class="w3-cyan">
+                <td><strong>{{output["date"]}}</strong></td>
+                <td><strong>{{currency_i_have}}</strong></td>
+                <td><strong>{{currency_i_want}}</strong></td>
+                <td><strong>{{conversion_value}}</strong></td>
+            </tr>
+
+            {% for key, value in result.items() %}
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{currency_i_have}}</td>
+                    <td>{{currency_i_want}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <div class="well" style="width:50%">
+            <a href="/">
+                <img src="/static/images/fistpump.gif"><br>
+                <strong>Click on the image to go home!</strong>
+            </a>
+        </div>
+    </center>
+</div>
+{% endblock %}

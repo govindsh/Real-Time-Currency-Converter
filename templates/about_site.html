@@ -1,0 +1,24 @@
+{% include "base.html" %}
+{% block head %}
+<style>
+    body {
+        background: url('/static/images/foreign-exchange.jpg') no-repeat;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<center>
+    <div class="w3-container w3-animate-zoom well" style="width:30%">
+
+        <p>
+            <h3>This currency converter is developed with the Fixer Currency API. As on date (August 5th 2017), it supports
+            32 countries and the rates are published by the European Central Bank and updated at 4PM Central European
+        Time (CET).</h3>
+        </p>
+        <p>
+            <h3>This application is developed using Flask web microframework and Python and uses a sqlite3 database. This web app
+        is hosted on a Raspberry pi Model B.</h3>
+        </p>
+    </div>
+</center>
+{% endblock %}
